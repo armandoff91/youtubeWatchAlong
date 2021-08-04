@@ -20,3 +20,5 @@ how?
     - socket
 - tagging
     - store in mongodb
+- video player
+    - iframe player
