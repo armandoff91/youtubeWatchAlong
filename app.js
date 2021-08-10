@@ -46,12 +46,12 @@ io.on("connection", async (socket) => {
         io.to(room).emit('message', "someone have joined")
     })
 
-    socket.on("message", (message) => {
+    socket.on("message", async (message) => {
         socket.emit("message", "right back at you")
         io.emit("message", "spread the love")
     })
 
-    socket.on("stopVideo", ()=> {
+    socket.on("stopVideo", async ()=> {
         console.log("stopVideo received")
         var i = 0
         socket.rooms.forEach((v) => {
@@ -65,6 +65,8 @@ io.on("connection", async (socket) => {
 
 
 
-server.listen(3000, () => {
-    console.log("server on.")
-}) 
+// server.listen(3000, () => {
+//     console.log("server on.")
+// }) 
+
+module.exports = app
