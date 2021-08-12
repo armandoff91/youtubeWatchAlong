@@ -1,21 +1,20 @@
+// grab socket .io from server
+// test events
 const request = require("supertest")
 const app = require("./app")
+const Client = require("socket.io-client")
+console.log("test running")
 
-it("GET landing page", (done) => {
-    request(app)
-        .get("/")
-        .expect(200)
-        .expect("Content-Type", /html/)
-        .end((err, res) => {
-            if (err) return done(err);
-            return done();
-        })
+beforeAll(() => {
+    console.log("beforeAll")
 })
 
-
+afterAll(() => {
+    console.log("afterAll")
+})
 
 it("get socket.io script", (done) => {
-    request(app)
+    request(app.app)
         .get("/socket.io.js")
         .expect(200)
         .expect("Content-Type", /javascript/)
@@ -26,7 +25,7 @@ it("get socket.io script", (done) => {
 })
 
 it("get '/session'", (done) => {
-    request(app)
+    request(app.app)
         .get("/session?vId=XXXXX&roomId=YYYYY")
         .expect(200)
         .expect("Content-Type", /html/)
@@ -36,13 +35,3 @@ it("get '/session'", (done) => {
             return done();
         })
 })
-
-it("Post '/', valid input", (done) => {
-
-})
-
-it("Get '/session', get into session", (done) => {
-
-})
-
-// how to test if request can crash my server?
